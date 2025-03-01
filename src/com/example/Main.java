@@ -163,7 +163,9 @@ public class Main {
 
     public static void example() {
 //        queQueExample();
-        mapExample();
+//        mapExample();
+//        enumSet();
+        enumMap();
     }
 
     public static void queQueExample() {
@@ -186,6 +188,7 @@ public class Main {
             System.out.println("Processing: " + nextCar);
         }
     }
+
     public static void mapExample(){
         HashMap<String, Car> hashMap = new HashMap<String,Car>();
         hashMap.put("test",new Car("BMW", 2019, 40000));
@@ -205,11 +208,32 @@ public class Main {
         linkedHashMap.put("niva",new Car("NIVA", 2021, 33000));
         iterateMap(linkedHashMap); // сохраняет порядок вставки: test key niva ORDERED
     }
+
+    public static void enumSet(){
+        EnumSet<DayOfWeek> hollidays = EnumSet.of(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY);
+        System.out.println(hollidays);
+    }
+
+    public static void enumMap(){
+        List<Car> sport = new ArrayList<Car>();
+        sport.add(new Car("BMW", 2019, 40000));
+        sport.add(new Car("Toyota", 2020, 25000));
+
+        List<Car> miniVan = new ArrayList<Car>();
+        miniVan.add(new Car("Audi", 2021, 35000));
+        miniVan.add(new Car("NIVA", 2021, 33000));
+
+        EnumMap<TypeOfCar, List<Car>> carMap = new EnumMap<>(TypeOfCar.class);
+        carMap.put(TypeOfCar.HATCHBACK,sport);
+        carMap.put(TypeOfCar.SEDAN, miniVan);
+        iterateMap(carMap); // порядок вставки по ключам не сохраняется
+    }
+
     public static void iterateMap(Map map){
         System.out.println();
-        Iterator<Map.Entry<String,Car>> iterotor = map.entrySet().iterator();
+        Iterator<Map.Entry<TypeOfCar,Car>> iterotor = map.entrySet().iterator(); // TypeOfCar - ключ, Car - значение
         while (iterotor.hasNext()){
-            Map.Entry<String, Car> carEntry = iterotor.next();
+            Map.Entry<TypeOfCar, Car> carEntry = iterotor.next(); // TypeOfCar - ключ, Car - значение
             System.out.println("Key: " + carEntry.getKey() + ", Value: " + carEntry.getValue());
         }
     }
