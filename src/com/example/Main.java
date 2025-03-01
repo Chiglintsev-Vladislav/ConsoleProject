@@ -149,7 +149,7 @@ public class Main {
         list.removeFirst();
         System.out.println(list);
         list.clear();
-        // Быстрее работает с удалением и добавлением элементов
+        // Быстрее работает с удалением и добавлением элементов. Двусвязный список
         LinkedList<Float> linked = new LinkedList<Float>();
         linked.addFirst(3.14f);
         linked.addFirst(2.718f);
@@ -162,65 +162,23 @@ public class Main {
     }
 
     public static void example() {
-        //Интерфейс Set имеет преимущество в скорости. Нельзя получить элементы по индексу. Перебор - Итератор или Цикл.
-        hashSetExample(); // Создание случайного набора. Самая простая и быстрая коллекция.
-        //treeSetExample(); // Сортировка набора по возрастанию. Самый медленный. SORTED
-        //linkedHashSetExample(); // ORDERED notSORTED. Упорядоченный набор. Хранит порядок вставки. В каком добавляли, в таком и выводит.
+        // Создаём сервис для работы с автомобилями
+        CarService carService = new CarQueue(true);
 
+        // Добавляем автомобили в очередь
+        carService.addCar(new Car("Toyota", 2020, 25000));
+        carService.addCar(new Car("BMW", 2019, 40000));
+        carService.addCar(new Car("Audi", 2021, 35000));
 
-    }
+        // Выводим очередь (отсортированную по цене)
+        System.out.println("Cars in queue (sorted by price):");
+        carService.printQueue();
 
-    public static void hashSetExample() {
-        Set<Car> cars = new HashSet(); // Generics ТИПИЗАЦИЯ
-        Car car1 = new Car("BMW");
-        Car car2 = new Car("Audi");
-        Car car3 = new Car("Toyota");
-        Car car4 = new Car("Nissan");
-        Car car5 = new Car("Nissan"); // Создаем объекты класса Car
-        Car car6 = new MiniCar("Mini Cooper"); // Дочерний тип
-        cars.add(car1);
-        cars.add(car2);
-        cars.add(car3);
-        cars.add(car4);
-        cars.add(car5); // Добавляем дубликаты
-        cars.add(car6);
-
-        Iterator<Car> iterator = cars.iterator(); // Вызываем Итератор для прохода по коллекции
-        while (iterator.hasNext()) {
-            Car car = iterator.next();
-            //System.out.println(car.getName());
-            car.drive();
-        }
-
-
-    }
-
-    public static void treeSetExample() {
-        Set<Integer> tree = new TreeSet<Integer>();
-        tree.add(11);
-        tree.add(2);
-        tree.add(30);
-        tree.add(400);
-        tree.add(50);
-        tree.add(36);
-        tree.add(70);
-        Iterator<Integer> iterator = tree.iterator();
-        while (iterator.hasNext()) {
-            System.out.println(iterator.next() + " "); // next преобразует в String
+        // Извлекаем автомобили из очереди
+        System.out.println("\nProcessing cars:");
+        Car nextCar;
+        while ((nextCar = carService.getNextCar()) != null) {
+            System.out.println("Processing: " + nextCar);
         }
     }
-
-    public static void linkedHashSetExample() {
-        Set<Integer> linked = new LinkedHashSet<>();
-        linked.add(11);
-        linked.add(2);
-        linked.add(30);
-        linked.add(400);
-        linked.add(50);
-        Iterator<Integer> iterator = linked.iterator();
-        while (iterator.hasNext()) {
-            System.out.println(iterator.next() + " ");
-        }
-    }
-
 }

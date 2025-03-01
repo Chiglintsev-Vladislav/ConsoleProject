@@ -1,38 +1,38 @@
 package com.example;
 
-public class Car {
-    private String name;
+public class Car implements Comparable<Car> {
+    private String brand;
+    private int year;
+    private int price;
 
-    public Car(String name) {
-        this.name = name;
+    // Конструктор
+    public Car(String brand, int year, int price) {
+        this.brand = brand;
+        this.year = year;
+        this.price = price;
     }
 
-    public String getName() {
-        return name;
+    // Геттеры и сеттеры
+    public String getBrand() {
+        return brand;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getYear() {
+        return year;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Car)) return false;
-
-        Car car = (Car) o;
-
-        if (!name.equals(car.name)) return false;
-
-        return true;
+    public String toString() {
+        return "Car{brand='" + brand + "', year=" + year + ", price=" + price + "}";
     }
 
+    // Реализация сравнения для сортировки (по цене)
     @Override
-    public int hashCode() {
-        return name.hashCode();
-    } // Хэш Код не основывается на имени, изменяем на то, чтобы не было дубликатов по имени.
-
-    public void drive() {
-        System.out.println("Based car");
-    } // Для проверки полиморфизма!
+    public int compareTo(Car other) {
+        return Integer.compare(this.price, other.price);
+    }
 }
