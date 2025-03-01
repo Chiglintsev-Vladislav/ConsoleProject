@@ -162,6 +162,11 @@ public class Main {
     }
 
     public static void example() {
+//        queQueExample();
+        mapExample();
+    }
+
+    public static void queQueExample() {
         // Создаём сервис для работы с автомобилями
         CarService carService = new CarQueue(true);
 
@@ -179,6 +184,33 @@ public class Main {
         Car nextCar;
         while ((nextCar = carService.getNextCar()) != null) {
             System.out.println("Processing: " + nextCar);
+        }
+    }
+    public static void mapExample(){
+        HashMap<String, Car> hashMap = new HashMap<String,Car>();
+        hashMap.put("test",new Car("BMW", 2019, 40000));
+        hashMap.put("key",new Car("Toyota", 2020, 25000));
+        hashMap.put("niva",new Car("NIVA", 2021, 33000));
+        iterateMap(hashMap); // порядок вставки по ключам не сохраняется
+
+        TreeMap<String, Car> treeMap = new TreeMap<String,Car>();
+        treeMap.put("test",new Car("BMW", 2019, 40000));
+        treeMap.put("key",new Car("Toyota", 2020, 25000));
+        treeMap.put("niva",new Car("NIVA", 2021, 33000));
+        iterateMap(treeMap); // сортировка по ключам
+
+        LinkedHashMap<String, Car> linkedHashMap = new LinkedHashMap<String,Car>();
+        linkedHashMap.put("test",new Car("BMW", 2019, 40000));
+        linkedHashMap.put("key",new Car("Toyota", 2020, 25000));
+        linkedHashMap.put("niva",new Car("NIVA", 2021, 33000));
+        iterateMap(linkedHashMap); // сохраняет порядок вставки: test key niva ORDERED
+    }
+    public static void iterateMap(Map map){
+        System.out.println();
+        Iterator<Map.Entry<String,Car>> iterotor = map.entrySet().iterator();
+        while (iterotor.hasNext()){
+            Map.Entry<String, Car> carEntry = iterotor.next();
+            System.out.println("Key: " + carEntry.getKey() + ", Value: " + carEntry.getValue());
         }
     }
 }
