@@ -1,4 +1,4 @@
-package com.example;
+package com.enums;
 
 public enum DayOfWeek {
 

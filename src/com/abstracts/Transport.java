@@ -1,4 +1,4 @@
-package com.example;
+package com.abstracts;
 
 import java.util.Arrays;
 
@@ -35,7 +35,7 @@ public abstract class Transport {
         System.out.println("Data: " + Arrays.toString(data));
     }
     // Вложенный класс для поддержки двигателя
-    class Engine {
+    public class Engine {
         private boolean isReady;
         private int km;
         public Engine(boolean isReady, int km) {

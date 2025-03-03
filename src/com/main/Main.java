@@ -1,4 +1,11 @@
-package com.example;
+package com.main;
+// Импорт из других пакетов
+import com.enums.DayOfWeek;
+import com.enums.TypeOfCar;
+import com.example.Car;
+import com.example.CarQueue;
+import com.example.Truck;
+import com.interfaces.CarService;
 
 import java.util.*;
 
@@ -166,7 +173,23 @@ public class Main {
 //        mapExample();
 //        enumSet();
 //        enumMap();
-        oopExample();
+//        oopExample();
+//        truckCraete();
+
+    }
+    // СТАТИЧНЫЕ МЕТОДЫ - СТАТИЧНЫЕ ПОЛЯ
+    public static void truckCraete() {
+        Truck audi = new Truck("Audi", 300, 20000);
+        Truck ford = new Truck("Ford", 220, 18000);
+        Truck bmw = new Truck("BMW", 250, 15000, new byte[]{1, 2, 3});
+    }
+
+    // Перегрузка info() info(String message)
+    public static void info() {
+        System.out.println("This is a reboot example");
+    }
+    public static void info(String message) {
+        System.out.println("Message: " + message);
     }
 
     public static void oopExample() {

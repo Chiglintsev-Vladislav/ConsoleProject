@@ -1,11 +1,21 @@
 package com.example;
+import com.abstracts.Transport;
 
 public class Truck extends Transport {
     private boolean isLoaded;
     private Engine engine = new Engine(false, 1);
+    // STATIC variable to keep track of the number of Trucks created
+    private static int count;
 
+    public Truck(String name, int speed, int weight, byte[] data) {
+        super(name, speed, weight, data);
+        count++;
+        System.out.println("Truck created: " + count);
+    }
     public Truck(String name, int speed, int weight) {
         super(name, speed, weight); // super class constructor is called
+        count++;
+        System.out.println("Truck created: " + count);
     }
 
     public void getEngineInfo() {
