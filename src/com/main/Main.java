@@ -9,6 +9,7 @@ import com.main.interfaces.CarService;
 import com.main.forms.ContactApps;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -179,8 +180,39 @@ public class Main {
 //        truckCraete();
 //        contactFormExample();
 //        exceptionExample();
-        
+        fileReadExample();
     }
+
+    public static void fileReadExample() {
+        BufferedReader br = null; // Важно закрыть поток после использования
+        try {
+            File file = new File("newFile.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            PrintWriter pw = new PrintWriter(file);
+            pw.println("Hello World!");
+            pw.println("This is a new line.");
+            pw.close();
+
+            br = new BufferedReader(new FileReader("newFile.txt"));
+            String line;
+            while ((line = br.readLine())!= null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        } finally {
+            if (br!= null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    System.out.println("Error closing file: " + e.getMessage());
+                }
+            }
+        }
+    }
+
     public static void exceptionExample() {
         try {
             int a = 5, b = 0;
