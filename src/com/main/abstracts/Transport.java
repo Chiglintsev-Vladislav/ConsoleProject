@@ -1,4 +1,4 @@
-package com.abstracts;
+package com.main.abstracts;
 
 import java.util.Arrays;
 

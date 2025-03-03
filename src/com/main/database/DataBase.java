@@ -1,4 +1,4 @@
-package com.database;
+package com.main.database;
 
 public class DataBase {
 

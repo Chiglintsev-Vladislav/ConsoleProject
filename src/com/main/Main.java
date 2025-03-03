@@ -1,11 +1,12 @@
 package com.main;
 // Импорт из других пакетов
-import com.enums.DayOfWeek;
-import com.enums.TypeOfCar;
-import com.example.Car;
-import com.example.CarQueue;
-import com.example.Truck;
-import com.interfaces.CarService;
+import com.main.enums.DayOfWeek;
+import com.main.enums.TypeOfCar;
+import com.main.example.Car;
+import com.main.example.CarQueue;
+import com.main.example.Truck;
+import com.main.interfaces.CarService;
+import com.main.forms.ContactApps;
 
 import java.util.*;
 
@@ -175,6 +176,11 @@ public class Main {
 //        enumMap();
 //        oopExample();
 //        truckCraete();
+        contactFormExample();
+    }
+    public static void contactFormExample() {
+        ContactApps form = new ContactApps();
+        form.setVisible(true);
 
     }
     // СТАТИЧНЫЕ МЕТОДЫ - СТАТИЧНЫЕ ПОЛЯ

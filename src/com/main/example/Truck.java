@@ -1,5 +1,5 @@
-package com.example;
-import com.abstracts.Transport;
+package com.main.example;
+import com.main.abstracts.Transport;
 
 public class Truck extends Transport {
     private boolean isLoaded;

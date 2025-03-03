@@ -1,6 +1,6 @@
-package com.interfaces;
+package com.main.interfaces;
 
-import com.example.Car;
+import com.main.example.Car;
 
 public interface CarService {
         void addCar(Car car);

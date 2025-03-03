@@ -1,5 +1,5 @@
-package com.example;
-import com.interfaces.CarService;
+package com.main.example;
+import com.main.interfaces.CarService;
 
 import java.util.*;
 
