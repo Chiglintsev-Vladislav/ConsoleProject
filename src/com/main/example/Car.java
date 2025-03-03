@@ -1,4 +1,4 @@
-package com.example;
+package com.main.example;
 
 public class Car implements Comparable<Car> {
     private String brand;

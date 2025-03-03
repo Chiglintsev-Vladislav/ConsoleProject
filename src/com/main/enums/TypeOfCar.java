@@ -1,4 +1,4 @@
-package com.example;
+package com.main.enums;
 
 public enum TypeOfCar {
 

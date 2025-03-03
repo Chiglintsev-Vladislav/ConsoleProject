@@ -1,4 +1,12 @@
-package com.example;
+package com.main;
+// Импорт из других пакетов
+import com.main.enums.DayOfWeek;
+import com.main.enums.TypeOfCar;
+import com.main.example.Car;
+import com.main.example.CarQueue;
+import com.main.example.Truck;
+import com.main.interfaces.CarService;
+import com.main.forms.ContactApps;
 
 import java.util.*;
 
@@ -165,7 +173,44 @@ public class Main {
 //        queQueExample();
 //        mapExample();
 //        enumSet();
-        enumMap();
+//        enumMap();
+//        oopExample();
+//        truckCraete();
+        contactFormExample();
+    }
+    public static void contactFormExample() {
+        ContactApps form = new ContactApps();
+        form.setVisible(true);
+
+    }
+    // СТАТИЧНЫЕ МЕТОДЫ - СТАТИЧНЫЕ ПОЛЯ
+    public static void truckCraete() {
+        Truck audi = new Truck("Audi", 300, 20000);
+        Truck ford = new Truck("Ford", 220, 18000);
+        Truck bmw = new Truck("BMW", 250, 15000, new byte[]{1, 2, 3});
+    }
+
+    // Перегрузка info() info(String message)
+    public static void info() {
+        System.out.println("This is a reboot example");
+    }
+    public static void info(String message) {
+        System.out.println("Message: " + message);
+    }
+
+    public static void oopExample() {
+        // ОШИБКА ИЗ-ЗА АБСТРАКТНОГО КЛАССА Transport. Нельзя создавать экземпляр абстрактного класса
+        // Transport bmw = new Transport("BMW", 250, 15000, new byte[]{1, 2, 3});
+        Truck audi = new Truck("Audi", 300, 20000);
+        //Transport ford = new Transport("Ford", 220, 18000);
+        //bmw.getTransport();
+
+        audi.loadCargo("cargo1");
+        audi.setTransport("Audi", 310, 21000, new byte[]{7, 8, 9});
+        audi.getTransport();
+        audi.setTransport("Audi", 230, 19000, new byte[]{4, 5, 6}, true);
+        audi.getTransport();
+        audi.getEngineInfo();
     }
 
     public static void queQueExample() {
@@ -229,7 +274,7 @@ public class Main {
         iterateMap(carMap); // порядок вставки по ключам не сохраняется
     }
 
-    public static void iterateMap(Map map){
+    public static void iterateMap(@org.jetbrains.annotations.NotNull Map map){
         System.out.println();
         Iterator<Map.Entry<TypeOfCar,Car>> iterotor = map.entrySet().iterator(); // TypeOfCar - ключ, Car - значение
         while (iterotor.hasNext()){

@@ -1,4 +1,6 @@
-package com.example;
+package com.main.example;
+import com.main.interfaces.CarService;
+
 import java.util.*;
 
 public class CarQueue implements CarService {
