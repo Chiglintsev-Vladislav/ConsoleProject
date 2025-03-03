@@ -7,6 +7,7 @@ import com.main.example.CarQueue;
 import com.main.example.Truck;
 import com.main.interfaces.CarService;
 import com.main.forms.ContactApps;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -176,13 +177,30 @@ public class Main {
 //        enumMap();
 //        oopExample();
 //        truckCraete();
-        contactFormExample();
+//        contactFormExample();
+//        exceptionExample();
+        
     }
+    public static void exceptionExample() {
+        try {
+            int a = 5, b = 0;
+            int result = a / b;
+            System.out.println("Result: " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("ArithmeticException: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Exception: " + e.getMessage());
+        } finally {
+            System.out.println("Finally block"); // Используется для закрытия ресурсов, например, потоков или базы данных
+        }
+    }
+
     public static void contactFormExample() {
         ContactApps form = new ContactApps();
         form.setVisible(true);
 
     }
+
     // СТАТИЧНЫЕ МЕТОДЫ - СТАТИЧНЫЕ ПОЛЯ
     public static void truckCraete() {
         Truck audi = new Truck("Audi", 300, 20000);
@@ -274,7 +292,7 @@ public class Main {
         iterateMap(carMap); // порядок вставки по ключам не сохраняется
     }
 
-    public static void iterateMap(@org.jetbrains.annotations.NotNull Map map){
+    public static void iterateMap(@NotNull Map map){
         System.out.println();
         Iterator<Map.Entry<TypeOfCar,Car>> iterotor = map.entrySet().iterator(); // TypeOfCar - ключ, Car - значение
         while (iterotor.hasNext()){
