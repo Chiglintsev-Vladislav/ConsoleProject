@@ -7,8 +7,23 @@ import com.main.example.CarQueue;
 import com.main.example.Truck;
 import com.main.interfaces.CarService;
 import com.main.forms.ContactApps;
+import org.jetbrains.annotations.NotNull;
 
+import java.io.*;
 import java.util.*;
+
+class SomeThreads extends Thread {
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println(Thread.currentThread().getName() + " - " + i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
 
 public class Main {
     public static void main(String[] args) {
@@ -176,13 +191,83 @@ public class Main {
 //        enumMap();
 //        oopExample();
 //        truckCraete();
-        contactFormExample();
+//        contactFormExample();
+//        exceptionExample();
+//        fileReadExample();
+        threadExample();
     }
+
+    public static void threadExample() {
+        SomeThreads thread1 = new SomeThreads();
+        SomeThreads thread2 = new SomeThreads();
+        thread1.start();
+        thread2.start();
+        Thread thread3 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 10; i++) {
+                    System.out.println("Thread: " + Thread.currentThread().getName() + " - " + i);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        thread3.start();
+    }
+
+    public static void fileReadExample() {
+        BufferedReader br = null; // Важно закрыть поток после использования
+        try {
+            File file = new File("newFile.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            PrintWriter pw = new PrintWriter(file);
+            pw.println("Hello World!");
+            pw.println("This is a new line.");
+            pw.close();
+
+            br = new BufferedReader(new FileReader("newFile.txt"));
+            String line;
+            while ((line = br.readLine())!= null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        } finally {
+            if (br!= null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    System.out.println("Error closing file: " + e.getMessage());
+                }
+            }
+        }
+    }
+
+    public static void exceptionExample() {
+        try {
+            int a = 5, b = 0;
+            int result = a / b;
+            System.out.println("Result: " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("ArithmeticException: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Exception: " + e.getMessage());
+        } finally {
+            System.out.println("Finally block"); // Используется для закрытия ресурсов, например, потоков или базы данных
+        }
+    }
+
     public static void contactFormExample() {
         ContactApps form = new ContactApps();
         form.setVisible(true);
 
     }
+
     // СТАТИЧНЫЕ МЕТОДЫ - СТАТИЧНЫЕ ПОЛЯ
     public static void truckCraete() {
         Truck audi = new Truck("Audi", 300, 20000);
@@ -274,7 +359,7 @@ public class Main {
         iterateMap(carMap); // порядок вставки по ключам не сохраняется
     }
 
-    public static void iterateMap(@org.jetbrains.annotations.NotNull Map map){
+    public static void iterateMap(@NotNull Map map){
         System.out.println();
         Iterator<Map.Entry<TypeOfCar,Car>> iterotor = map.entrySet().iterator(); // TypeOfCar - ключ, Car - значение
         while (iterotor.hasNext()){
