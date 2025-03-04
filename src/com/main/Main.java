@@ -12,6 +12,14 @@ import org.jetbrains.annotations.NotNull;
 import java.io.*;
 import java.util.*;
 
+class SomeThreads extends Thread {
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println(i);
+        }
+    }
+}
+
 public class Main {
     public static void main(String[] args) {
         // Comments
@@ -180,7 +188,15 @@ public class Main {
 //        truckCraete();
 //        contactFormExample();
 //        exceptionExample();
-        fileReadExample();
+//        fileReadExample();
+        threadExample();
+    }
+
+    public static void threadExample() {
+        SomeThreads thread1 = new SomeThreads();
+        SomeThreads thread2 = new SomeThreads();
+        thread1.start();
+        thread2.start();
     }
 
     public static void fileReadExample() {
