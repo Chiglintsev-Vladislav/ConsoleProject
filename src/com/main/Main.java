@@ -15,7 +15,12 @@ import java.util.*;
 class SomeThreads extends Thread {
     public void run() {
         for (int i = 0; i < 10; i++) {
-            System.out.println(i);
+            System.out.println(Thread.currentThread().getName() + " - " + i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
@@ -197,6 +202,20 @@ public class Main {
         SomeThreads thread2 = new SomeThreads();
         thread1.start();
         thread2.start();
+        Thread thread3 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 10; i++) {
+                    System.out.println("Thread: " + Thread.currentThread().getName() + " - " + i);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        thread3.start();
     }
 
     public static void fileReadExample() {

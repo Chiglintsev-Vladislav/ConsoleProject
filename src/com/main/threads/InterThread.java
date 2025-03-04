@@ -1,4 +1,4 @@
-package com.main.interfaces;
+package com.main.threads;
 
 class Some implements Runnable {
 
